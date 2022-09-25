@@ -1,15 +1,15 @@
-namespace solarsystem {
+namespace space {
     /**
      * Fill a sphere of blocks at a center position.
      * @param radius the radius of the sphere, eg: 5
      */
-    //% blockId=minecraftSphereRandomBlocks
+    //% blockId=space_sphereRandomBlocks
     //% block="sphere of $blockList|center %center=minecraftCreatePosition|radius %radius|%operator"
     //% blockList.shadow="lists_create_with"
     //% blockList.defl="minecraftBlock"
     //% blockExternalInputs=1
     //% help=shapes/sphere
-    //% group="Solar System"
+    //% group="Shapes"
     export function sphere(
         blockList: number[],
         center: Position,

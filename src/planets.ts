@@ -47,8 +47,8 @@ enum DistanceFromSun {
     Neptune = 562,
 }
 
-namespace solarsystem {
-    //% blockId=solarsystem_planet_mercury block="mercury at center %center=minecraftCreatePosition || of radius %radius"
+namespace space {
+    //% blockId=space_planet_mercury block="mercury at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% radius.defl=2
     //% weight=99
@@ -65,7 +65,7 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_venus block="venus at center %center=minecraftCreatePosition || of radius %radius"
+    //% blockId=space_planet_venus block="venus at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% radius.defl=6
     //% weight=98
@@ -77,7 +77,7 @@ namespace solarsystem {
         shapes.sphere(YELLOW_CONCRETE, center, radius, ShapeOperation.Outline);
     }
 
-    //% blockId=solarsystem_planet_earth block="earth at center %center=minecraftCreatePosition || of radius %radius"
+    //% blockId=space_planet_earth block="earth at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% radius.defl=6
     //% weight=97
@@ -94,7 +94,7 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_mars block="mars at center %center=minecraftCreatePosition || of radius %radius"
+    //% blockId=space_planet_mars block="mars at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% radius.defl=3
     //% weight=96
@@ -106,7 +106,7 @@ namespace solarsystem {
         shapes.sphere(RED_SANDSTONE, center, radius, ShapeOperation.Outline);
     }
 
-    //% blockId=solarsystem_planet_jupiter block="jupiter at center %center=minecraftCreatePosition || of radius %radius"
+    //% blockId=space_planet_jupiter block="jupiter at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% radius.defl=35
     //% weight=95
@@ -118,7 +118,7 @@ namespace solarsystem {
         shapes.sphere(ORANGE_CONCRETE, center, radius, ShapeOperation.Outline);
     }
 
-    //% blockId=solarsystem_planet_saturn block="saturn at center %center=minecraftCreatePosition || of radius %radius"
+    //% blockId=space_planet_saturn block="saturn at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% radius.defl=30
     //% weight=94
@@ -138,7 +138,7 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_uranus block="uranus at center %center=minecraftCreatePosition || of radius %radius"
+    //% blockId=space_planet_uranus block="uranus at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% radius.defl=13
     //% weight=93
@@ -155,7 +155,7 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_neptune block="neptune at center %center=minecraftCreatePosition || of radius %radius"
+    //% blockId=space_planet_neptune block="neptune at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% radius.defl=12
     //% weight=92
@@ -167,7 +167,7 @@ namespace solarsystem {
         shapes.sphere(BLUE_CONCRETE, center, radius, ShapeOperation.Outline);
     }
 
-    //% blockId=solarsystem_sun block="sun at center %center=minecraftCreatePosition || of radius %radius"
+    //% blockId=space_stars_sun block="sun at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Stars"
 
     export function create_sun(
@@ -182,7 +182,7 @@ namespace solarsystem {
      * Creates a solar system at a default scale of 5.
      * @param scale scale of radius of planets; eg: 1, 5; Multiplies the actual radius by (scale/5)
      */
-    //% blockId=solarsystem block="solar system at center %center=minecraftCreatePosition || scale %scale"
+    //% blockId=space_solarsystem block="solar system at center %center=minecraftCreatePosition || scale %scale"
     //% group="Solar System"
     //% scale.min=1 scale.max=5 scale.defl=5
     export function create_solar_system(center: Position, scale: number): void {
