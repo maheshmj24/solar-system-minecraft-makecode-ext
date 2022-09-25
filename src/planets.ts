@@ -193,15 +193,31 @@ namespace solarsystem {
     export function create_solar_system(center: Position, scale: number): void {
         center = center.toWorld();
 
-        const sun = center.add(pos(Radius.Sun, 0, 0));
-        const mercuryCenter = sun.add(pos(DistanceFromSun.Mercury, 0, 0));
-        const venusCenter = sun.add(pos(DistanceFromSun.Venus, 0, 0));
-        const earthCenter = sun.add(pos(DistanceFromSun.Earth, 0, 0));
-        const marsCenter = sun.add(pos(DistanceFromSun.Mars, 0, 0));
-        const jupiterCenter = sun.add(pos(DistanceFromSun.Jupiter, 0, 0));
-        const saturnCenter = sun.add(pos(DistanceFromSun.Saturn, 0, 0));
-        const uranusCenter = sun.add(pos(DistanceFromSun.Uranus, 0, 0));
-        const neptuneCenter = sun.add(pos(DistanceFromSun.Neptune, 0, 0));
+        const sun = center.add(pos(Math.round(Radius.Sun * (scale / 5)), 0, 0));
+        const mercuryCenter = sun.add(
+            pos(Math.round(DistanceFromSun.Mercury * (scale / 5)), 0, 0)
+        );
+        const venusCenter = sun.add(
+            pos(Math.round(DistanceFromSun.Venus * (scale / 5)), 0, 0)
+        );
+        const earthCenter = sun.add(
+            pos(Math.round(DistanceFromSun.Earth * (scale / 5)), 0, 0)
+        );
+        const marsCenter = sun.add(
+            pos(Math.round(DistanceFromSun.Mars * (scale / 5)), 0, 0)
+        );
+        const jupiterCenter = sun.add(
+            pos(Math.round(DistanceFromSun.Jupiter * (scale / 5)), 0, 0)
+        );
+        const saturnCenter = sun.add(
+            pos(Math.round(DistanceFromSun.Saturn * (scale / 5)), 0, 0)
+        );
+        const uranusCenter = sun.add(
+            pos(Math.round(DistanceFromSun.Uranus * (scale / 5)), 0, 0)
+        );
+        const neptuneCenter = sun.add(
+            pos(Math.round(DistanceFromSun.Neptune * (scale / 5)), 0, 0)
+        );
 
         create_sun(center, Radius.Sun * (scale / 5));
         create_mercury(mercuryCenter, Radius.Mercury * (scale / 5));
