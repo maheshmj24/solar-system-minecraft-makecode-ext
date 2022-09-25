@@ -93,7 +93,6 @@ namespace solarsystem {
             Radius.Mars,
             ShapeOperation.Outline
         );
-        shapes.
     }
 
     //% blockId=solarsystem_planet_mars block="create jupiter|center %center=minecraftCreatePosition"
