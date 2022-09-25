@@ -86,7 +86,7 @@ namespace space {
         radius: number = Radius.Earth
     ): void {
         if (radius <= 0) return;
-        solarsystem.sphere(
+        space.sphere(
             [GRASS, DIRT],
             center,
             radius,

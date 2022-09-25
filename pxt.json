@@ -11,11 +11,15 @@
         "src/sphere.ts",
         "README.md"
     ],
-    "testFiles": ["test.ts"],
+    "testFiles": [
+        "test.ts"
+    ],
     "targetVersions": {
         "target": "1.6.27",
         "targetId": "minecraft"
     },
-    "supportedTargets": ["minecraft"],
+    "supportedTargets": [
+        "minecraft"
+    ],
     "preferredEditor": "tsprj"
 }
