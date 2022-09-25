@@ -51,34 +51,34 @@ enum DistanceFromSun {
 }
 
 namespace solarsystem {
-    //% blockId=solarsystem_planet_mercury block="create mercury|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_mercury block="mercury at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% weight=99
-    export function create_mercury(center: Position): void {
+    //% radius.defl=5
+    export function create_mercury(
+        center: Position,
+        radius?: number = Radius.Mercury
+    ): void {
         shapes.sphere(
             LIGHT_GRAY_CONCRETE,
             center,
-            Radius.Mercury,
+            radius,
             ShapeOperation.Outline
         );
     }
 
-    //% blockId=solarsystem_planet_venus block="create venus|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_venus block="venus at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
+    //% radius.defl=Radius.Venus
     //% weight=98
-    export function create_venus(center: Position): void {
-        shapes.sphere(
-            YELLOW_CONCRETE,
-            center,
-            Radius.Venus,
-            ShapeOperation.Outline
-        );
+    export function create_venus(center: Position, radius?: number = 1): void {
+        shapes.sphere(YELLOW_CONCRETE, center, radius, ShapeOperation.Outline);
     }
 
-    //% blockId=solarsystem_planet_earth block="create earth|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_earth block="earth at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% weight=97
-    export function create_earth(center: Position): void {
+    export function create_earth(center: Position, radius?: number): void {
         solarsystem.sphere(
             [GRASS, DIRT],
             center,
@@ -87,10 +87,10 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_mars block="create mars|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_mars block="mars at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% weight=96
-    export function create_mars(center: Position): void {
+    export function create_mars(center: Position, radius?: number): void {
         shapes.sphere(
             RED_SANDSTONE,
             center,
@@ -99,10 +99,10 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_jupiter block="create jupiter|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_jupiter block="jupiter at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% weight=95
-    export function create_jupiter(center: Position): void {
+    export function create_jupiter(center: Position, radius?: number): void {
         shapes.sphere(
             ORANGE_CONCRETE_POWDER,
             center,
@@ -111,10 +111,11 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_saturn block="create saturn|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_saturn block="saturn at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% weight=94
-    export function create_saturn(center: Position): void {
+    export function create_saturn(center: Position, radius?: number): void {
+        center = center.toWorld();
         shapes.sphere(
             GOLD_BLOCK,
             center,
@@ -125,15 +126,15 @@ namespace solarsystem {
             GOLD_BLOCK,
             center,
             Radius.Saturn + 3,
-            Axis.X,
+            Axis.Y,
             ShapeOperation.Outline
         );
     }
 
-    //% blockId=solarsystem_planet_uranus block="create uranus|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_uranus block="uranus at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% weight=93
-    export function create_uranus(center: Position): void {
+    export function create_uranus(center: Position, radius?: number): void {
         shapes.sphere(
             LIGHT_BLUE_CONCRETE_POWDER,
             center,
@@ -142,10 +143,10 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_neptune block="create neptune|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_neptune block="neptune at center %center=minecraftCreatePosition || of radius %radius"
     //% group="Planets"
     //% weight=92
-    export function create_neptune(center: Position): void {
+    export function create_neptune(center: Position, radius?: number): void {
         shapes.sphere(
             BLUE_CONCRETE,
             center,
@@ -154,14 +155,13 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_sun block="create sun|center %center=minecraftCreatePosition"
-    //% group="Stars"
-    //% weight=100
-    export function create_sun(center: Position): void {
+    //% blockId=solarsystem_sun block="sun at center %center=minecraftCreatePosition || of radius %radius"
+    export function create_sun(center: Position, radius?: number): void {
         shapes.sphere(GLOWSTONE, center, Radius.Sun, ShapeOperation.Outline);
     }
 
-    //% blockId=solarsystem block="create solar system|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem block="solar system at center %center=minecraftCreatePosition"
+    //% group="Solar System"
     export function create_solar_system(center: Position): void {
         const xc = Math.round(center.getValue(Axis.X));
         const yc = Math.round(center.getValue(Axis.Y));

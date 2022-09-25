@@ -9,6 +9,7 @@ namespace solarsystem {
     //% blockList.defl="minecraftBlock"
     //% blockExternalInputs=1
     //% help=shapes/sphere
+    //% group="Solar System"
     export function sphere(
         blockList: number[],
         center: Position,
