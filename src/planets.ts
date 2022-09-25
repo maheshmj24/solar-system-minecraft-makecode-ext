@@ -95,7 +95,7 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_mars block="create jupiter|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_jupiter block="create jupiter|center %center=minecraftCreatePosition"
     //% group="Planets"
     export function create_jupiter(center: Position): void {
         shapes.sphere(
@@ -106,7 +106,7 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_mars block="create saturn|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_saturn block="create saturn|center %center=minecraftCreatePosition"
     //% group="Planets"
     export function create_saturn(center: Position): void {
         shapes.sphere(
@@ -124,7 +124,7 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_mars block="create uranus|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_uranus block="create uranus|center %center=minecraftCreatePosition"
     //% group="Planets"
     export function create_uranus(center: Position): void {
         shapes.sphere(
@@ -135,7 +135,7 @@ namespace solarsystem {
         );
     }
 
-    //% blockId=solarsystem_planet_mars block="create neptune|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem_planet_neptune block="create neptune|center %center=minecraftCreatePosition"
     //% group="Planets"
     export function create_neptune(center: Position): void {
         shapes.sphere(
