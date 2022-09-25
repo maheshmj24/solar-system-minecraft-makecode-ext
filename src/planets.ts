@@ -184,59 +184,33 @@ namespace solarsystem {
     }
 
     /**
-     * Creates a solar system at a deafult scale of 10.
-     * @param scale scale of radius of planets; eg: 1, 10; Multiplies the actual radius by (scale/10)
+     * Creates a solar system at a default scale of 5.
+     * @param scale scale of radius of planets; eg: 1, 5; Multiplies the actual radius by (scale/5)
      */
     //% blockId=solarsystem block="solar system at center %center=minecraftCreatePosition || scale %scale"
     //% group="Solar System"
-    //% scale.min=1 scale.max=10 scale.defl=10
+    //% scale.min=1 scale.max=5 scale.defl=5
     export function create_solar_system(center: Position, scale: number): void {
-        const xc = Math.round(center.getValue(Axis.X));
-        const yc = Math.round(center.getValue(Axis.Y));
-        const zc = Math.round(center.getValue(Axis.Z));
+        center = center.toWorld();
 
-        const sun = positions.add(center, pos(xc + Radius.Sun, 0, 0));
-        const mercuryCenter = positions.add(
-            sun,
-            pos(xc + DistanceFromSun.Mercury, yc, zc)
-        );
-        const venusCenter = positions.add(
-            sun,
-            pos(xc + DistanceFromSun.Venus, yc, zc)
-        );
-        const earthCenter = positions.add(
-            sun,
-            pos(xc + DistanceFromSun.Earth, yc, zc)
-        );
-        const marsCenter = positions.add(
-            sun,
-            pos(xc + DistanceFromSun.Mars, yc, zc)
-        );
-        const jupiterCenter = positions.add(
-            sun,
-            pos(xc + DistanceFromSun.Jupiter, yc, zc)
-        );
-        const saturnCenter = positions.add(
-            sun,
-            pos(xc + DistanceFromSun.Saturn, yc, zc)
-        );
-        const uranusCenter = positions.add(
-            sun,
-            pos(xc + DistanceFromSun.Uranus, yc, zc)
-        );
-        const neptuneCenter = positions.add(
-            sun,
-            pos(xc + DistanceFromSun.Neptune, yc, zc)
-        );
+        const sun = center.add(pos(Radius.Sun, 0, 0));
+        const mercuryCenter = sun.add(pos(DistanceFromSun.Mercury, 0, 0));
+        const venusCenter = sun.add(pos(DistanceFromSun.Venus, 0, 0));
+        const earthCenter = sun.add(pos(DistanceFromSun.Earth, 0, 0));
+        const marsCenter = sun.add(pos(DistanceFromSun.Mars, 0, 0));
+        const jupiterCenter = sun.add(pos(DistanceFromSun.Jupiter, 0, 0));
+        const saturnCenter = sun.add(pos(DistanceFromSun.Saturn, 0, 0));
+        const uranusCenter = sun.add(pos(DistanceFromSun.Uranus, 0, 0));
+        const neptuneCenter = sun.add(pos(DistanceFromSun.Neptune, 0, 0));
 
-        create_sun(center, Radius.Sun * (scale / 10));
-        create_mercury(mercuryCenter, Radius.Mercury * (scale / 10));
-        create_venus(venusCenter, Radius.Venus * (scale / 10));
-        create_earth(earthCenter, Radius.Earth * (scale / 10));
-        create_mars(marsCenter, Radius.Mars * (scale / 10));
-        create_jupiter(jupiterCenter, Radius.Jupiter * (scale / 10));
-        create_saturn(saturnCenter, Radius.Saturn * (scale / 10));
-        create_uranus(uranusCenter, Radius.Uranus * (scale / 10));
-        create_neptune(neptuneCenter, Radius.Neptune * (scale / 10));
+        create_sun(center, Radius.Sun * (scale / 5));
+        create_mercury(mercuryCenter, Radius.Mercury * (scale / 5));
+        create_venus(venusCenter, Radius.Venus * (scale / 5));
+        create_earth(earthCenter, Radius.Earth * (scale / 5));
+        create_mars(marsCenter, Radius.Mars * (scale / 5));
+        create_jupiter(jupiterCenter, Radius.Jupiter * (scale / 5));
+        create_saturn(saturnCenter, Radius.Saturn * (scale / 5));
+        create_uranus(uranusCenter, Radius.Uranus * (scale / 5));
+        create_neptune(neptuneCenter, Radius.Neptune * (scale / 5));
     }
 }
