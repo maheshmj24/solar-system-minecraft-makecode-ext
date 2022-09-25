@@ -115,12 +115,7 @@ namespace solarsystem {
         radius: number = Radius.Jupiter
     ): void {
         if (radius <= 0) return;
-        shapes.sphere(
-            ORANGE_CONCRETE_POWDER,
-            center,
-            radius,
-            ShapeOperation.Outline
-        );
+        shapes.sphere(ORANGE_CONCRETE, center, radius, ShapeOperation.Outline);
     }
 
     //% blockId=solarsystem_planet_saturn block="saturn at center %center=minecraftCreatePosition || of radius %radius"
@@ -153,7 +148,7 @@ namespace solarsystem {
     ): void {
         if (radius <= 0) return;
         shapes.sphere(
-            LIGHT_BLUE_CONCRETE_POWDER,
+            LIGHT_BLUE_CONCRETE,
             center,
             radius,
             ShapeOperation.Outline
@@ -193,30 +188,30 @@ namespace solarsystem {
     export function create_solar_system(center: Position, scale: number): void {
         center = center.toWorld();
 
-        const sun = center.add(pos(Math.round(Radius.Sun * (scale / 5)), 0, 0));
+        const sun = center.add(pos(Math.round(Radius.Sun * (scale / 2)), 0, 0));
         const mercuryCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Mercury * (scale / 5)), 0, 0)
+            pos(Math.round(DistanceFromSun.Mercury * (scale / 2)), 0, 0)
         );
         const venusCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Venus * (scale / 5)), 0, 0)
+            pos(Math.round(DistanceFromSun.Venus * (scale / 2)), 0, 0)
         );
         const earthCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Earth * (scale / 5)), 0, 0)
+            pos(Math.round(DistanceFromSun.Earth * (scale / 2)), 0, 0)
         );
         const marsCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Mars * (scale / 5)), 0, 0)
+            pos(Math.round(DistanceFromSun.Mars * (scale / 2)), 0, 0)
         );
         const jupiterCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Jupiter * (scale / 5)), 0, 0)
+            pos(Math.round(DistanceFromSun.Jupiter * (scale / 2)), 0, 0)
         );
         const saturnCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Saturn * (scale / 5)), 0, 0)
+            pos(Math.round(DistanceFromSun.Saturn * (scale / 2)), 0, 0)
         );
         const uranusCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Uranus * (scale / 5)), 0, 0)
+            pos(Math.round(DistanceFromSun.Uranus * (scale / 2)), 0, 0)
         );
         const neptuneCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Neptune * (scale / 5)), 0, 0)
+            pos(Math.round(DistanceFromSun.Neptune * (scale / 2)), 0, 0)
         );
 
         create_sun(center, Radius.Sun * (scale / 5));
