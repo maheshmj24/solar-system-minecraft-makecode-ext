@@ -1,16 +1,62 @@
 namespace space {
+    
     /**
      * Fill a sphere of blocks at a center position.
      * @param radius the radius of the sphere, eg: 5
      */
+    //% blockId=space_sphere block="sphere of %block=minecraftBlock|center %center=minecraftCreatePosition|radius %radius|%operator"
+    //% block.shadow=minecraftBlock
+    //% blockExternalInputs=1
+    //% help=shapes/sphere
+    export function sphere(block: number, center: Position, radius: number, operator: ShapeOperation) {
+        if (radius <= 0) return;
+
+        radius = Math.round(radius);
+
+        center = center.toWorld();
+        const xc = Math.round(center.getValue(Axis.X));
+        const yc = Math.round(center.getValue(Axis.Y));
+        const zc = Math.round(center.getValue(Axis.Z));
+        const radius2 = radius * radius;
+        const radiuso = (radius - 1) * (radius - 1)
+        for (let x = -radius; x <= radius; ++x) {
+            const x2 = x * x;
+            for (let y = -radius; y <= radius; ++y) {
+                const y2 = y * y;
+                if (x2 + y2 > radius2) continue;
+
+                for (let z = -radius; z <= radius; ++z) {
+                    const z2 = z * z;
+                    if (x2 + y2 + z2 > radius2) continue;
+                    const p = positions.createWorld(xc + x, yc + y, zc + z);
+
+                    if (operator == ShapeOperation.Replace || x2 + y2 + z2 >= radiuso){   // on the "crust"
+                        builder.teleportTo(p);
+                        builder.place(block);
+                        // blocks.place(block, p);
+                    }
+                    else if (operator == ShapeOperation.Hollow){
+                        builder.teleportTo(p);
+                        builder.place(Block.Air);
+                        // blocks.place(Block.Air, p);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Fill a sphere of blocks chosen at random from the block list provided, at a center position.
+     * @param radius the radius of the sphere, eg: 5
+     */
     //% blockId=space_sphereRandomBlocks
-    //% block="sphere of $blockList|center %center=minecraftCreatePosition|radius %radius|%operator"
+    //% block="sphere of random blocks from $blockList|center %center=minecraftCreatePosition|radius %radius|%operator"
     //% blockList.shadow="lists_create_with"
     //% blockList.defl="minecraftBlock"
     //% blockExternalInputs=1
     //% help=shapes/sphere
     //% group="Shapes"
-    export function sphere(
+    export function random_sphere(
         blockList: number[],
         center: Position,
         radius: number,
@@ -40,11 +86,76 @@ namespace space {
                     if (
                         operator == ShapeOperation.Replace ||
                         x2 + y2 + z2 >= radiuso
-                    )
+                    ){
                         // on the "crust"
-                        blocks.place(blockList._pickRandom(), p);
-                    else if (operator == ShapeOperation.Hollow)
-                        blocks.place(Block.Air, p);
+                        builder.teleportTo(p);
+                        builder.place(blockList._pickRandom());
+                        //blocks.place(blockList._pickRandom(), p);
+                    }
+                    else if (operator == ShapeOperation.Hollow){
+                        builder.teleportTo(p);
+                        builder.place(Block.Air);
+                        //blocks.place(Block.Air, p);
+                    }
+                        
+                }
+            }
+        }
+    }
+
+    /**
+     * Fill a sphere of blocks where block for each layer is chosen at random from the block list provided, at a center position.
+     * @param radius the radius of the sphere, eg: 5
+     */
+    //% blockId=space_sphereRandomLayerBlocks
+    //% block="sphere of random layers from $blockList|center %center=minecraftCreatePosition|radius %radius|%operator"
+    //% blockList.shadow="lists_create_with"
+    //% blockList.defl="minecraftBlock"
+    //% blockExternalInputs=1
+    //% help=shapes/sphere
+    //% group="Shapes"
+    export function random_layer_sphere(
+        blockList: number[],
+        center: Position,
+        radius: number,
+        operator: ShapeOperation
+    ) {
+        if (radius <= 0) return;
+
+        radius = Math.round(radius);
+
+        center = center.toWorld();
+        const xc = Math.round(center.getValue(Axis.X));
+        const yc = Math.round(center.getValue(Axis.Y));
+        const zc = Math.round(center.getValue(Axis.Z));
+        const radius2 = radius * radius;
+        const radiuso = (radius - 1) * (radius - 1);
+        for (let x = -radius; x <= radius; ++x) {   
+            const blockForCurrentLayer = blockList._pickRandom();
+            const x2 = x * x;
+            for (let y = -radius; y <= radius; ++y) {      
+                const y2 = y * y;
+                if (x2 + y2 > radius2) continue;
+                for (let z = -radius; z <= radius; ++z) {
+                    
+                    const z2 = z * z;
+                    if (x2 + y2 + z2 > radius2) continue;
+                    const p = positions.createWorld(xc + x, yc + y, zc + z);
+
+                    if (
+                        operator == ShapeOperation.Replace ||
+                        x2 + y2 + z2 >= radiuso
+                    ) {
+                        // on the "crust"
+                        builder.teleportTo(p);
+                        builder.place(blockList._pickRandom());
+                        //blocks.place(blockList._pickRandom(), p);
+                    }
+                    else if (operator == ShapeOperation.Hollow) {
+                        builder.teleportTo(p);
+                        builder.place(Block.Air);
+                        //blocks.place(Block.Air, p);
+                    }
                 }
             }
         }

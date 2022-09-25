@@ -57,7 +57,7 @@ namespace space {
         radius: number = Radius.Mercury
     ): void {
         if (radius <= 0) return;
-        shapes.sphere(
+        space.sphere(
             LIGHT_GRAY_CONCRETE,
             center,
             radius,
@@ -74,7 +74,7 @@ namespace space {
         radius: number = Radius.Venus
     ): void {
         if (radius <= 0) return;
-        shapes.sphere(YELLOW_CONCRETE, center, radius, ShapeOperation.Outline);
+        space.sphere(YELLOW_CONCRETE, center, radius, ShapeOperation.Outline);
     }
 
     //% blockId=space_planet_earth block="earth at center %center=minecraftCreatePosition || of radius %radius"
@@ -86,7 +86,7 @@ namespace space {
         radius: number = Radius.Earth
     ): void {
         if (radius <= 0) return;
-        space.sphere(
+        space.random_sphere(
             [GRASS, DIRT],
             center,
             radius,
@@ -103,7 +103,7 @@ namespace space {
         radius: number = Radius.Mars
     ): void {
         if (radius <= 0) return;
-        shapes.sphere(RED_SANDSTONE, center, radius, ShapeOperation.Outline);
+        space.sphere(RED_SANDSTONE, center, radius, ShapeOperation.Outline);
     }
 
     //% blockId=space_planet_jupiter block="jupiter at center %center=minecraftCreatePosition || of radius %radius"
@@ -115,7 +115,7 @@ namespace space {
         radius: number = Radius.Jupiter
     ): void {
         if (radius <= 0) return;
-        shapes.sphere(ORANGE_CONCRETE, center, radius, ShapeOperation.Outline);
+        space.sphere(ORANGE_CONCRETE, center, radius, ShapeOperation.Outline);
     }
 
     //% blockId=space_planet_saturn block="saturn at center %center=minecraftCreatePosition || of radius %radius"
@@ -128,7 +128,7 @@ namespace space {
     ): void {
         if (radius <= 0) return;
         center = center.toWorld();
-        shapes.sphere(GOLD_BLOCK, center, radius, ShapeOperation.Outline);
+        space.sphere(GOLD_BLOCK, center, radius, ShapeOperation.Outline);
         shapes.circle(
             GOLD_BLOCK,
             center,
@@ -147,7 +147,7 @@ namespace space {
         radius: number = Radius.Uranus
     ): void {
         if (radius <= 0) return;
-        shapes.sphere(
+        space.sphere(
             LIGHT_BLUE_CONCRETE,
             center,
             radius,
@@ -164,7 +164,7 @@ namespace space {
         radius: number = Radius.Neptune
     ): void {
         if (radius <= 0) return;
-        shapes.sphere(BLUE_CONCRETE, center, radius, ShapeOperation.Outline);
+        space.sphere(BLUE_CONCRETE, center, radius, ShapeOperation.Outline);
     }
 
     //% blockId=space_stars_sun block="sun at center %center=minecraftCreatePosition || of radius %radius"
@@ -175,7 +175,7 @@ namespace space {
         radius: number = Radius.Sun
     ): void {
         if (radius <= 0) return;
-        shapes.sphere(GLOWSTONE, center, radius, ShapeOperation.Outline);
+        space.sphere(GLOWSTONE, center, radius, ShapeOperation.Outline);
     }
 
     /**
@@ -188,7 +188,7 @@ namespace space {
     export function create_solar_system(center: Position, scale: number): void {
         center = center.toWorld();
 
-        const sun = center.add(pos(Math.round(Radius.Sun * (scale / 2)), 0, 0));
+        const sun = center.add(pos(Math.round((Radius.Sun / 2) * (scale / 2)), 0, 0));
         const mercuryCenter = sun.add(
             pos(Math.round(DistanceFromSun.Mercury * (scale / 2)), 0, 0)
         );
@@ -214,14 +214,14 @@ namespace space {
             pos(Math.round(DistanceFromSun.Neptune * (scale / 2)), 0, 0)
         );
 
-        create_sun(center, Radius.Sun * (scale / 5));
-        create_mercury(mercuryCenter, Radius.Mercury * (scale / 5));
-        create_venus(venusCenter, Radius.Venus * (scale / 5));
-        create_earth(earthCenter, Radius.Earth * (scale / 5));
-        create_mars(marsCenter, Radius.Mars * (scale / 5));
-        create_jupiter(jupiterCenter, Radius.Jupiter * (scale / 5));
-        create_saturn(saturnCenter, Radius.Saturn * (scale / 5));
-        create_uranus(uranusCenter, Radius.Uranus * (scale / 5));
-        create_neptune(neptuneCenter, Radius.Neptune * (scale / 5));
+        create_sun(center, Radius.Sun * (scale / 3));
+        create_mercury(mercuryCenter, Radius.Mercury * (scale / 3));
+        create_venus(venusCenter, Radius.Venus * (scale / 3));
+        create_earth(earthCenter, Radius.Earth * (scale / 3));
+        create_mars(marsCenter, Radius.Mars * (scale / 3));
+        create_jupiter(jupiterCenter, Radius.Jupiter * (scale / 3));
+        create_saturn(saturnCenter, Radius.Saturn * (scale / 3));
+        create_uranus(uranusCenter, Radius.Uranus * (scale / 3));
+        create_neptune(neptuneCenter, Radius.Neptune * (scale / 3));
     }
 }
