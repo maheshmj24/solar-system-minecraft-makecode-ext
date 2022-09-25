@@ -121,7 +121,7 @@ namespace solarsystem {
             Radius.Saturn + 3,
             Axis.X,
             ShapeOperation.Outline
-            )
+        );
     }
 
     //% blockId=solarsystem_planet_mars block="create uranus|center %center=minecraftCreatePosition"
@@ -148,29 +148,48 @@ namespace solarsystem {
 
     //% blockId=solarsystem_sun block="create sun|center %center=minecraftCreatePosition"
     export function create_sun(center: Position): void {
-        shapes.sphere(
-            GLOWSTONE,
-            center,
-            Radius.Sun,
-            ShapeOperation.Outline
-        );
+        shapes.sphere(GLOWSTONE, center, Radius.Sun, ShapeOperation.Outline);
     }
 
-    //% blockId=solarsystem_sun block="create solar system|center %center=minecraftCreatePosition"
+    //% blockId=solarsystem block="create solar system|center %center=minecraftCreatePosition"
     export function create_solar_system(center: Position): void {
         const xc = Math.round(center.getValue(Axis.X));
         const yc = Math.round(center.getValue(Axis.Y));
         const zc = Math.round(center.getValue(Axis.Z));
 
-        const sun = positions.add(center, pos(xc +Radius.Sun, 0, 0));
-        const mercuryCenter = positions.add(sun, pos(xc +DistanceFromSun.Mercury, yc, zc));
-        const venusCenter = positions.add(sun, pos(xc +DistanceFromSun.Venus, yc, zc));
-        const earthCenter = positions.add(sun, pos(xc +DistanceFromSun.Earth, yc, zc));
-        const marsCenter = positions.add(sun, pos(xc +DistanceFromSun.Mars, yc, zc));
-        const jupiterCenter = positions.add(sun, pos(xc +DistanceFromSun.Jupiter, yc, zc));
-        const saturnCenter = positions.add(sun, pos(xc +DistanceFromSun.Saturn, yc, zc));
-        const uranusCenter = positions.add(sun, pos(xc +DistanceFromSun.Uranus, yc, zc));
-        const neptuneCenter = positions.add(sun, pos(xc +DistanceFromSun.Neptune, yc, zc));
+        const sun = positions.add(center, pos(xc + Radius.Sun, 0, 0));
+        const mercuryCenter = positions.add(
+            sun,
+            pos(xc + DistanceFromSun.Mercury, yc, zc)
+        );
+        const venusCenter = positions.add(
+            sun,
+            pos(xc + DistanceFromSun.Venus, yc, zc)
+        );
+        const earthCenter = positions.add(
+            sun,
+            pos(xc + DistanceFromSun.Earth, yc, zc)
+        );
+        const marsCenter = positions.add(
+            sun,
+            pos(xc + DistanceFromSun.Mars, yc, zc)
+        );
+        const jupiterCenter = positions.add(
+            sun,
+            pos(xc + DistanceFromSun.Jupiter, yc, zc)
+        );
+        const saturnCenter = positions.add(
+            sun,
+            pos(xc + DistanceFromSun.Saturn, yc, zc)
+        );
+        const uranusCenter = positions.add(
+            sun,
+            pos(xc + DistanceFromSun.Uranus, yc, zc)
+        );
+        const neptuneCenter = positions.add(
+            sun,
+            pos(xc + DistanceFromSun.Neptune, yc, zc)
+        );
 
         create_sun(center);
         create_mercury(mercuryCenter);
