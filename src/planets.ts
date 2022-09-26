@@ -252,7 +252,7 @@ namespace space {
             pos(
                 Math.round(
                     DistanceFromSun.Saturn * scale +
-                        (2 * (Radius.Saturn * scale) + 2)
+                        (2 * (Radius.Saturn * scale) + 2 + 10)
                 ),
                 0,
                 0
