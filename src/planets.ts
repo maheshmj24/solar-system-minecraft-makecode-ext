@@ -34,7 +34,7 @@ enum DistanceFromSun {
     Mercury = 14,
     Venus = 24,
     Earth = 41,
-    Mars = 59,
+    Mars = 62,
 
     // Jupiter = 194,
     // Saturn = 356,

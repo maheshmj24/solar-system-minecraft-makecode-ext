@@ -1,5 +1,4 @@
 namespace space {
-
     /**
      * Fill a sphere of blocks at a center position.
      * @param radius the radius of the sphere, eg: 5
@@ -9,7 +8,12 @@ namespace space {
     //% blockExternalInputs=1
     //% help=shapes/sphere
     //% group="Shapes"
-    export function sphere(block: number, center: Position, radius: number, operator: ShapeOperation) {
+    export function sphere(
+        block: number,
+        center: Position,
+        radius: number,
+        operator: ShapeOperation
+    ) {
         if (radius <= 0) return;
 
         radius = Math.round(radius);
@@ -19,7 +23,7 @@ namespace space {
         const yc = Math.round(center.getValue(Axis.Y));
         const zc = Math.round(center.getValue(Axis.Z));
         const radius2 = radius * radius;
-        const radiuso = (radius - 1) * (radius - 1)
+        const radiuso = (radius - 1) * (radius - 1);
         for (let x = -radius; x <= radius; ++x) {
             const x2 = x * x;
             for (let y = -radius; y <= radius; ++y) {
@@ -31,12 +35,15 @@ namespace space {
                     if (x2 + y2 + z2 > radius2) continue;
                     const p = positions.createWorld(xc + x, yc + y, zc + z);
 
-                    if (operator == ShapeOperation.Replace || x2 + y2 + z2 >= radiuso) {   // on the "crust"
+                    if (
+                        operator == ShapeOperation.Replace ||
+                        x2 + y2 + z2 >= radiuso
+                    ) {
+                        // on the "crust"
                         builder.teleportTo(p);
                         builder.place(block);
                         // blocks.place(block, p);
-                    }
-                    else if (operator == ShapeOperation.Hollow) {
+                    } else if (operator == ShapeOperation.Hollow) {
                         builder.teleportTo(p);
                         builder.place(Block.Air);
                         // blocks.place(Block.Air, p);
@@ -103,7 +110,7 @@ namespace space {
     }
 
     /**
-     * Fill a sphere of blocks where block for each layer is chosen at random from the block list provided, at a center position.
+     * Fill a sphere of blocks where block for each layer is chosen at random or in order from the block list provided, at a center position.
      * @param radius the radius of the sphere, eg: 5
      */
     //% blockId=space_sphereRandomLayerBlocks
@@ -136,9 +143,9 @@ namespace space {
         for (let x = -radius; x <= radius; ++x) {
             let blockForCurrentLayer: Block;
             if (useBlockOrder) {
-                blockForCurrentLayer = blockList[Math.abs(x) % blockList.length]
-            }
-            else {
+                blockForCurrentLayer =
+                    blockList[Math.abs(x) % blockList.length];
+            } else {
                 blockForCurrentLayer = blockList._pickRandom();
             }
             const x2 = x * x;
