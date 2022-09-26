@@ -1,6 +1,6 @@
 {
-    "name": "Solar System",
-    "description": "Solar System",
+    "name": "Space",
+    "description": "Extension with space related objects like planets, solar system etc",
     "dependencies": {
         "core": "*",
         "builder": "*"
@@ -11,15 +11,11 @@
         "src/sphere.ts",
         "README.md"
     ],
-    "testFiles": [
-        "test.ts"
-    ],
+    "testFiles": ["test.ts"],
     "targetVersions": {
         "target": "1.6.27",
         "targetId": "minecraft"
     },
-    "supportedTargets": [
-        "minecraft"
-    ],
+    "supportedTargets": ["minecraft"],
     "preferredEditor": "tsprj"
 }
