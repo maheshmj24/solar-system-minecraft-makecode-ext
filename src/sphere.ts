@@ -8,6 +8,7 @@ namespace space {
     //% block.shadow=minecraftBlock
     //% blockExternalInputs=1
     //% help=shapes/sphere
+    //% group="Shapes"
     export function sphere(block: number, center: Position, radius: number, operator: ShapeOperation) {
         if (radius <= 0) return;
 
@@ -148,7 +149,7 @@ namespace space {
                     ) {
                         // on the "crust"
                         builder.teleportTo(p);
-                        builder.place(blockList._pickRandom());
+                        builder.place(blockForCurrentLayer);
                         //blocks.place(blockList._pickRandom(), p);
                     }
                     else if (operator == ShapeOperation.Hollow) {

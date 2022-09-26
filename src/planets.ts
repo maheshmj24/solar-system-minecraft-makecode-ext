@@ -32,8 +32,8 @@ enum Radius {
 // Distance above divided by 4
 enum DistanceFromSun {
     Mercury = 14,
-    Venus = 27,
-    Earth = 37,
+    Venus = 26,
+    Earth = 38,
     Mars = 57,
 
     // Jupiter = 194,
@@ -179,49 +179,62 @@ namespace space {
     }
 
     /**
-     * Creates a solar system at a default scale of 5.
-     * @param scale scale of radius of planets; eg: 1, 5; Multiplies the actual radius by (scale/5)
+     * Creates a solar system at a default sizeScale of 3.
+     * @param sizeScale sizeScale of radius of planets; eg: 1, 5; Multiplies the actual radius by (scale/3)
+     * @param distanceFromSunScale sizeScale of distance of planets from sun; eg: 1, 3; Multiplies the actual distance by ((distanceFromSunScale + sizeScale) / 2)
      */
-    //% blockId=space_solarsystem block="solar system at center %center=minecraftCreatePosition || scale %scale"
+    //% blockId=space_solarsystem block="solar system at center %center=minecraftCreatePosition || planet size of scale %sizeScale distance from sun of scale %distanceFromSunScale"
     //% group="Solar System"
-    //% scale.min=1 scale.max=5 scale.defl=5
-    export function create_solar_system(center: Position, scale: number): void {
+    //% sizeScale.min=1 sizeScale.max=5 sizeScale.defl=3
+    //% distanceFromSunScale.min=1 distanceFromSunScale.max=3 distanceFromSunScale.defl=2
+    export function create_solar_system(center: Position, sizeScale: number, distanceFromSunScale: number): void {
         center = center.toWorld();
+        distanceFromSunScale = distanceFromSunScale + sizeScale / 2;
+        sizeScale = sizeScale / 3;
+        const sunEdge = center.add(pos(Math.round(Radius.Sun * sizeScale), 0, 0));
+        const mercuryCenter = sunEdge.add(
+            pos(Math.round((DistanceFromSun.Mercury * distanceFromSunScale) + (2 * (Radius.Mercury * sizeScale) + 2)), 0, 0)
+        );
+        const venusCenter = sunEdge.add(
+            pos(Math.round((DistanceFromSun.Venus * distanceFromSunScale) + (2 * (Radius.Venus * sizeScale) + 2)), 0, 0)
+        );
+        const earthCenter = sunEdge.add(
+            pos(Math.round((DistanceFromSun.Earth * distanceFromSunScale) + (2 * (Radius.Earth * sizeScale) + 2)), 0, 0)
+        );
+        const marsCenter = sunEdge.add(
+            pos(Math.round((DistanceFromSun.Mars * distanceFromSunScale) + (2 * (Radius.Mars * sizeScale) + 2)), 0, 0)
+        );
+        const jupiterCenter = sunEdge.add(
+            pos(Math.round((DistanceFromSun.Jupiter * distanceFromSunScale) + (2 * (Radius.Jupiter * sizeScale) + 2)), 0, 0)
+        );
+        const saturnCenter = sunEdge.add(
+            pos(Math.round((DistanceFromSun.Saturn * distanceFromSunScale) + (2 * (Radius.Saturn * sizeScale) + 2)), 0, 0)
+        );
+        const uranusCenter = sunEdge.add(
+            pos(Math.round((DistanceFromSun.Uranus * distanceFromSunScale) + (2 * (Radius.Uranus * sizeScale) + 2)), 0, 0)
+        );
+        const neptuneCenter = sunEdge.add(
+            pos(Math.round((DistanceFromSun.Neptune * distanceFromSunScale) + (2 * (Radius.Neptune * sizeScale) + 2)), 0, 0)
+        );
 
-        const sun = center.add(pos(Math.round((Radius.Sun / 2) * (scale / 2)), 0, 0));
-        const mercuryCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Mercury * (scale / 2)), 0, 0)
-        );
-        const venusCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Venus * (scale / 2)), 0, 0)
-        );
-        const earthCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Earth * (scale / 2)), 0, 0)
-        );
-        const marsCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Mars * (scale / 2)), 0, 0)
-        );
-        const jupiterCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Jupiter * (scale / 2)), 0, 0)
-        );
-        const saturnCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Saturn * (scale / 2)), 0, 0)
-        );
-        const uranusCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Uranus * (scale / 2)), 0, 0)
-        );
-        const neptuneCenter = sun.add(
-            pos(Math.round(DistanceFromSun.Neptune * (scale / 2)), 0, 0)
-        );
-
-        create_sun(center, Radius.Sun * (scale / 3));
-        create_mercury(mercuryCenter, Radius.Mercury * (scale / 3));
-        create_venus(venusCenter, Radius.Venus * (scale / 3));
-        create_earth(earthCenter, Radius.Earth * (scale / 3));
-        create_mars(marsCenter, Radius.Mars * (scale / 3));
-        create_jupiter(jupiterCenter, Radius.Jupiter * (scale / 3));
-        create_saturn(saturnCenter, Radius.Saturn * (scale / 3));
-        create_uranus(uranusCenter, Radius.Uranus * (scale / 3));
-        create_neptune(neptuneCenter, Radius.Neptune * (scale / 3));
+        //Teleport player near the planet build area to fix the blocks getting missed out bug
+        player.teleport(center.add(pos(0, 0, Radius.Sun + 5)));
+        create_sun(center, Radius.Sun * sizeScale);
+        player.teleport(mercuryCenter.add(pos(0, 0, Radius.Mercury + 5)));
+        create_mercury(mercuryCenter, Radius.Mercury * sizeScale);
+        player.teleport(venusCenter.add(pos(0, 0, Radius.Venus + 5)));
+        create_venus(venusCenter, Radius.Venus * sizeScale);
+        player.teleport(earthCenter.add(pos(0, 0, Radius.Earth + 5)));
+        create_earth(earthCenter, Radius.Earth * sizeScale);
+        player.teleport(marsCenter.add(pos(0, 0, Radius.Mars + 5)));
+        create_mars(marsCenter, Radius.Mars * sizeScale);
+        player.teleport(jupiterCenter.add(pos(0, 0, Radius.Jupiter + 5)));
+        create_jupiter(jupiterCenter, Radius.Jupiter * sizeScale);
+        player.teleport(saturnCenter.add(pos(0, 0, Radius.Saturn + 5)));
+        create_saturn(saturnCenter, Radius.Saturn * sizeScale);
+        player.teleport(uranusCenter.add(pos(0, 0, Radius.Uranus + 5)));
+        create_uranus(uranusCenter, Radius.Uranus * sizeScale);
+        player.teleport(neptuneCenter.add(pos(0, 0, Radius.Neptune + 5)));
+        create_neptune(neptuneCenter, Radius.Neptune * sizeScale);
     }
 }
