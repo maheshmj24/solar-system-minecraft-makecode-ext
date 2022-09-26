@@ -87,7 +87,7 @@ namespace space {
     ): void {
         if (radius <= 0) return;
         space.random_layer_sphere(
-            [LIGHT_BLUE_CONCRETE, WHITE_CONCRETE, GRASS],
+            [LIGHT_BLUE_CONCRETE, GRASS, WHITE_CONCRETE],
             center,
             radius,
             Axis.Y,
